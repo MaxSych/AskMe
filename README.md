@@ -62,6 +62,7 @@ Markdown
    ```bash
    git clone [https://github.com/MaxSych/AnonQuestions.git](https://github.com/MaxSych/AnonQuestions.git)
    cd AnonQuestions
+   
 2. Configure the Database:
 Create a database in PostgreSQL:
 SQL
@@ -72,9 +73,11 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/anon_questions
 spring.datasource.username=your_postgres_username
 spring.datasource.password=your_postgres_password
 spring.jpa.hibernate.ddl-auto=update
+
 3. Build and Run:
 Bash
 mvn clean install
 mvn spring-boot:run
+
 4. Open the Application:
 Navigate to http://localhost:8081 in your browser.
