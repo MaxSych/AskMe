@@ -31,7 +31,7 @@ public class Question {
     private String question;
 
     @Size(min = 1, max = 100)
-    private String response;
+    private String answer;
 
 
     private Boolean isAnswered = false;

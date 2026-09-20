@@ -11,7 +11,6 @@ import java.util.List;
 @Component
 public class InboxMapper {
     public InboxResponse toInboxResponse(Question post){
-
         if (post == null) return null;
 
         return new InboxResponse(post.getId(), post.getQuestion());
@@ -27,9 +26,7 @@ public class InboxMapper {
 
             InboxResponse inboxResponse = toInboxResponse(post);
             inboxResponses.add(inboxResponse);
-
         }
-
         return inboxResponses;
     }
 }

@@ -57,7 +57,7 @@
 
             <div id="answerSection" class="answer-section-wrapper" style="display: none;">
                 <div class="answer-section">
-                    <h3>✍ Area for your respond</h3>
+                    <h3>✍ Area for your answer</h3>
 
                     <input type="hidden" id="currentQuestionId" value="">
 
@@ -75,14 +75,11 @@
 <!--Inbox modal window end -->
 
 
-
-
-
 <!--Header start -->
 
 <div class="header-section">
     <div class="profile-card">
-        <h1 id="user-name" th:text="${user != null ? user?.displayName
+        <h1 id="user-name" th:text="${user != null ? user?.username()
          : 'User not found'}">username</h1>
         <p id="user-bio" th:text="${user?.bio}">User's bio will be here</p>
     </div>
@@ -110,9 +107,9 @@
 
         <div th:each="post : ${posts}" class="post-item">
             <div class="post-question" th:text="${post.question}">Question text</div>
-            <div th:if="${post.response != null}">
+            <div th:if="${post.answer != null}">
                 <div class="inner-divider"></div>
-                <div class="post-answer" th:text="${post.response}">Response</div>
+                <div class="post-answer" th:text="${post.answer}">Response</div>
                 <div class="creation-time" th:text="${post.createdAt}"> Time of creation</div>
                 <div th:if="${#authentication?.name == user?.username}" class="post-menu-container">
                     <button sec:authorize="hasRole('ROLE_USER')" class="btn-post-options">...</button>

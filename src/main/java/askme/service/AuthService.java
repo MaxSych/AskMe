@@ -29,16 +29,13 @@ public class AuthService {
             throw new IllegalArgumentException("Passwords do not match");
         }
 
-
         if (userRepository.existsByEmail(request.getEmail())) {
             log.warn("Attempt to register already existing email: {}", request.getEmail());
             throw new RuntimeException("User already exists with email: " + request.getEmail());
         }
 
-
         log.info("Starting registration process for email: {}", request.getEmail());
         User user = userMapper.toEntity(request);
-
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 

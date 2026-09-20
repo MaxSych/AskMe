@@ -1,0 +1,1 @@
+ALTER TABLE public.question RENAME COLUMN response TO answer;

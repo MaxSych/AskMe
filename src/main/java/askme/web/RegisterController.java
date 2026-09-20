@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegisterController {
-
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final AuthService authService;
     private final UserRepository userRepository;
 
@@ -21,20 +20,15 @@ public class RegisterController {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @GetMapping("/register")
     public String GetLogin() {
-
         return "register";
     }
 
     @GetMapping("/main")
     public String GetMain(){
-
         return "main";
     }
-
-
 
     @PostMapping("/register")
     public String register(@ModelAttribute RegistrationRequest request) {

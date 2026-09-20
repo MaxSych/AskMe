@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class QuestionsController {
-
     private final QuestionsLifecycleService questionsLifecycleService;
     private final AskingQuestionsService askingQuestionsService;
 
@@ -25,9 +24,7 @@ public class QuestionsController {
 
     @PostMapping("/add")
     public String addQuestion(@RequestParam("text") String questionText, @RequestParam("userName") String userName, RedirectAttributes redirectAttributes) {
-
         if (questionText == null || questionText.trim().length() < 5) {
-
             redirectAttributes.addFlashAttribute("errorMessage", "Text is too short!");
             return "redirect:/profile/" + userName;
         }

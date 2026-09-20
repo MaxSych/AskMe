@@ -60,7 +60,7 @@ public class QuestionsLifecycleService {
         Question post = questionRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
 
-        post.setResponse(answerText);
+        post.setAnswer(answerText);
         post.setIsAnswered(true);
 
     }
