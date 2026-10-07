@@ -105,24 +105,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version> <!-- Рекомендуется указать версию -->
+                <version>3.11.0</version>
                 <configuration>
                     <annotationProcessorPaths>
-                        <!-- 1. Lombok генерирует геттеры/сеттеры -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
-
-                        <!-- 2. Связка, чтобы MapStruct видел геттеры Lombok -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
                             <version>0.2.0</version>
                         </path>
-
-                        <!-- 3. MapStruct генерирует реализацию маппера -->
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>

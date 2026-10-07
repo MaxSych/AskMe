@@ -1,7 +1,7 @@
 package askme.web;
 
 import askme.User;
-import askme.data.PostRepository;
+import askme.data.QuestionRepository;
 import askme.data.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,39 +25,32 @@ class QuestionControllerTest {
     private UserRepository userRepository;
 
     @MockitoBean
-    private PostRepository postRepository;
+    private QuestionRepository postRepository;
 
     @Test
     void testAddPost_Success() throws Exception {
-        // Данные для теста
         Long userId = 1L;
-        String postText = "Привет, это тестовый пост!";
-        User mockUser = new User(); // Предположим, у User есть пустой конструктор
+        String postText = "Hi its a test post!";
+        User mockUser = new User();
 
-        // Настройка мока: когда ищем пользователя, возвращаем объект
         when(userRepository.findById(userId)).thenReturn(Optional.of(mockUser));
 
-        // Выполнение POST запроса
         mockMvc.perform(post("/profile/{userId}", userId)
                         .param("text", postText))
-                .andExpect(status().is3xxRedirection()) // Проверяем редирект
+                .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/profile/" + userId));
 
-        // Проверяем, что метод репозитория действительно вызывался
         verify(userRepository, times(1)).findById(userId);
     }
 
     @Test
     void testAddPost_UserNotFound() throws Exception {
         Long userId = 99L;
-
-        // Настройка мока: пользователь не найден
+        
         when(userRepository.findById(userId)).thenReturn(Optional.empty());
 
-        // Проверяем, что выбрасывается исключение (Runtime)
-        // В Spring MVC это обычно приводит к 500 ошибке, если нет HandlerExceptionResolver
         mockMvc.perform(post("/profile/{userId}", userId)
-                        .param("text", "любой текст"))
+                        .param("text", "any text"))
                 .andExpect(status().isInternalServerError());
     }
 }
