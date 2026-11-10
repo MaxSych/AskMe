@@ -28,7 +28,7 @@ public class Question {
     private LocalDate answeredAt;
 
     @Size(min = 5, max = 100)
-    private String question;
+    private String text_question;
 
     @Size(min = 1, max = 100)
     private String answer;

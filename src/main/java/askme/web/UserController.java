@@ -1,6 +1,6 @@
 package askme.web;
 
-import askme.dto.response.InboxResponse;
+import askme.dto.response.InboxQuestionResponse;
 import askme.service.QuestionsLifecycleService;
 import askme.mapper.InboxMapper;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class UserController {
         model.addAttribute("posts", profileService.getPostInformation(username));
         model.addAttribute("user", profileService.getUserInformation(username));
 
-        List<InboxResponse> unanswered = inboxMapper.toInboxPostResponseList(answeringService.getUnansweredPosts(username));
+        List<InboxQuestionResponse> unanswered = inboxMapper.toInboxPostResponseList(answeringService.getUnansweredPosts(username));
         model.addAttribute("unanswered", unanswered);
 
         return "profile";

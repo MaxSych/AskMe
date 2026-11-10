@@ -1,4 +1,4 @@
-package sia.anonquestions;
+package askme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

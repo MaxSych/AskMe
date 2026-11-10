@@ -3,15 +3,23 @@ package askme.web;
 import askme.User;
 import askme.data.QuestionRepository;
 import askme.data.UserRepository;
+import askme.dto.response.InboxQuestionResponse;
+import askme.dto.response.UserProfileResponse;
+import askme.entity.Question;
+import askme.mapper.InboxMapper;
+import askme.service.ProfileService;
+import askme.service.QuestionsLifecycleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
+
+import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -23,36 +31,37 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private UserRepository userRepository;
+    private ProfileService profileService;
 
     @MockitoBean
-    private QuestionRepository postRepository;
+    private QuestionsLifecycleService answeringService;
+
+    @MockitoBean
+    private InboxMapper inboxMapper;
 
     @Test
-    void testShowProfileSuccess() throws Exception {
-        User mockUser = new User();
-        mockUser.setId(1L);
-        mockUser.setUsername("testuser");
-        mockUser.setPosts(Collections.emptyList());
+    void showProfile_ShouldReturnProfileViewWithData() throws Exception {
 
-        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+        String username = "test";
 
-        mockMvc.perform(get("/profile/1"))
+        List<Question> fakeQuestions = List.of(new Question(), new Question());
+        UserProfileResponse fakeUser = new UserProfileResponse(1L, 1L, "Mike", null, null, null, null, null, null);
+        List<InboxQuestionResponse> fakeUnanswered = List.of(new InboxQuestionResponse(1l, "A"),new InboxQuestionResponse(2L, "A") );
+
+        when(profileService.getPostInformation(username)).thenReturn(fakeQuestions);
+        when(profileService.getUserInformation(username)).thenReturn(fakeUser);
+        when(inboxMapper.toInboxPostResponseList(fakeQuestions)).thenReturn(fakeUnanswered);
+
+        mockMvc.perform(get("/profile/" + username))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profile"))
-                .andExpect(model().attributeExists("user"))
-                .andExpect(model().attribute("user", mockUser));
+                .andExpect(model().attribute("user", fakeUser))
+                .andExpect(model().attribute("posts", fakeQuestions))
+                .andExpect(model().attribute("unanswered", fakeUnanswered));
+
+        verify(profileService).getPostInformation(username);
+        verify(profileService).getUserInformation(username);
+        verify(inboxMapper).toInboxPostResponseList(fakeQuestions);
     }
 
-    @Test
-    void testShowProfileNotFound() {
-        when(userRepository.findById(99L)).thenReturn(Optional.empty());
-
-        Exception exception = org.junit.jupiter.api.Assertions.assertThrows(Exception.class, () -> {
-            mockMvc.perform(get("/profile/99"));
-        });
-
-        org.junit.jupiter.api.Assertions.assertTrue(exception.getCause() instanceof RuntimeException);
-        org.junit.jupiter.api.Assertions.assertEquals("User not found", exception.getCause().getMessage());
-    }
-}
+  }
