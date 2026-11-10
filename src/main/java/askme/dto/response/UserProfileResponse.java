@@ -9,14 +9,10 @@ import java.time.LocalDate;
 public record UserProfileResponse(
         //User data
         Long userId,
-        Long postId,
         String username,
         String displayName,
-        String bio,
-        // Question data
-        String question,
-        String answer,
-        Boolean isAnswered,
-        LocalDate createdAt
+        String bio
+
 
 ) {}
+

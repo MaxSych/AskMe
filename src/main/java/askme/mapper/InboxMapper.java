@@ -13,7 +13,7 @@ public class InboxMapper {
     public InboxQuestionResponse toInboxResponse(Question question){
         if (question == null) return null;
 
-        return new InboxQuestionResponse(question.getId(), question.getText_question());
+        return new InboxQuestionResponse(question.getId(), question.getTextQuestion());
     }
 
     public List<InboxQuestionResponse> toInboxPostResponseList(List<Question> posts) {

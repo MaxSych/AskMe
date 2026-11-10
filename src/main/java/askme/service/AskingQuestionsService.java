@@ -30,12 +30,12 @@ public class AskingQuestionsService {
                     return new RuntimeException("User not found: " + userName);
                 });
 
-        Question post = new Question();
-        post.setQuestion(questionText);
-        post.setUser(receiver);
-        questionRepository.save(post);
+        Question question = new Question();
+        question.setTextQuestion(questionText);
+        question.setUser(receiver);
+        questionRepository.save(question);
 
-        log.info("Question successfully saved for user: {}. Post ID: {}", userName, post.getId());
+        log.info("Question successfully saved for user: {}. Post ID: {}", userName, question.getId());
     }
 
 

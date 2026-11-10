@@ -23,7 +23,7 @@ public class QuestionsLifecycleService {
         this.questionRepository = questionRepository;
     }
 
-    public List<Question> getUnansweredPosts(String username) {
+    public List<Question> getUnansweredQuestions(String username) {
         User user;
         List<Question> unansweredQuestions  = new ArrayList<>();
         user = userRepository.findByUsername(username)

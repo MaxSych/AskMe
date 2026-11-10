@@ -28,7 +28,7 @@ public class Question {
     private LocalDate answeredAt;
 
     @Size(min = 5, max = 100)
-    private String text_question;
+    private String textQuestion;
 
     @Size(min = 1, max = 100)
     private String answer;
@@ -39,6 +39,4 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-
 }

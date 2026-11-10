@@ -27,7 +27,7 @@ public class UserController {
         model.addAttribute("posts", profileService.getPostInformation(username));
         model.addAttribute("user", profileService.getUserInformation(username));
 
-        List<InboxQuestionResponse> unanswered = inboxMapper.toInboxPostResponseList(answeringService.getUnansweredPosts(username));
+        List<InboxQuestionResponse> unanswered = inboxMapper.toInboxPostResponseList(answeringService.getUnansweredQuestions(username));
         model.addAttribute("unanswered", unanswered);
 
         return "profile";

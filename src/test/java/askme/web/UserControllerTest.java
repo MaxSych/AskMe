@@ -1,8 +1,5 @@
 package askme.web;
 
-import askme.User;
-import askme.data.QuestionRepository;
-import askme.data.UserRepository;
 import askme.dto.response.InboxQuestionResponse;
 import askme.dto.response.UserProfileResponse;
 import askme.entity.Question;
@@ -17,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,10 +41,10 @@ class UserControllerTest {
         String username = "test";
 
         List<Question> fakeQuestions = List.of(new Question(), new Question());
-        UserProfileResponse fakeUser = new UserProfileResponse(1L, 1L, "Mike", null, null, null, null, null, null);
+        UserProfileResponse fakeUser = new UserProfileResponse(1L, "Mike", null, null);
         List<InboxQuestionResponse> fakeUnanswered = List.of(new InboxQuestionResponse(1l, "A"),new InboxQuestionResponse(2L, "A") );
 
-        when(profileService.getPostInformation(username)).thenReturn(fakeQuestions);
+        //when(profileService.getPostInformation(username)).thenReturn(fakeQuestions);
         when(profileService.getUserInformation(username)).thenReturn(fakeUser);
         when(inboxMapper.toInboxPostResponseList(fakeQuestions)).thenReturn(fakeUnanswered);
 

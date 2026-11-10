@@ -7,8 +7,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
-    default String toQuestionText(Question post) {
-        return post != null ? post.getQuestion() : null;
+    default String toQuestionText(Question question) {
+        return question != null ? question.getTextQuestion() : null;
     }
 
     List<String> toQuestionTexts(List<Question> posts);
