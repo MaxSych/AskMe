@@ -3,7 +3,7 @@ package askme.mapper;
 import askme.dto.response.QuestionResponse;
 import askme.dto.response.UserProfileResponse;
 import askme.entity.Question;
-import askme.User;
+import askme.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,7 +1,6 @@
-package askme;
+package askme.entity;
 
 
-import askme.entity.Question;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -73,9 +72,6 @@ public class User implements UserDetails {
         return id;
     }
 
-    public String getDisplayName() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {

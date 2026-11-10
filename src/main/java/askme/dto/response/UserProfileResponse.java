@@ -10,7 +10,6 @@ public record UserProfileResponse(
         //User data
         Long userId,
         String username,
-        String displayName,
         String bio
 
 

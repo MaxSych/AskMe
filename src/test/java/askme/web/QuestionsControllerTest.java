@@ -1,7 +1,7 @@
 package askme.web;
 
 
-import askme.User;
+import askme.entity.User;
 import askme.service.AskingQuestionsService;
 import askme.service.QuestionsLifecycleService;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,6 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

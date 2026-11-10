@@ -1,6 +1,6 @@
 package askme.service;
 
-import askme.User;
+import askme.entity.User;
 import askme.data.QuestionRepository;
 import askme.data.UserRepository;
 import askme.entity.Question;

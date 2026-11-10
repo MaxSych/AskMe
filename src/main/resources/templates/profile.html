@@ -106,7 +106,7 @@
         </div>
 
         <div th:each="post : ${posts}" class="post-item">
-            <div class="post-question" th:text="${post.question}">Question text</div>
+            <div class="post-question" th:text="${post.textQuestion}">Question text</div>
             <div th:if="${post.answer != null}">
                 <div class="inner-divider"></div>
                 <div class="post-answer" th:text="${post.answer}">Response</div>
@@ -114,7 +114,7 @@
                 <div th:if="${#authentication?.name == user?.username}" class="post-menu-container">
                     <button sec:authorize="hasRole('ROLE_USER')" class="btn-post-options">...</button>
                     <div id="post-options-dropdown" class="post-options-dropdown">
-                        <button type="button" class="btn-post-delete" data-value="tech" th:data-id="${post.id}">
+                        <button type="button" class="btn-post-delete" data-value="tech" th:data-id="${post.questionId}">
                             Delete
                         </button>
                     </div>

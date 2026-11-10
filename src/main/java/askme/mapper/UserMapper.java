@@ -1,6 +1,6 @@
 package askme.mapper;
 
-import askme.User;
+import askme.entity.User;
 import askme.dto.request.RegistrationRequest;
 import askme.dto.response.UserProfileResponse;
 import org.mapstruct.Mapper;

@@ -1,6 +1,6 @@
 package askme.data;
 
-import askme.User;
+import askme.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

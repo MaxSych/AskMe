@@ -1,6 +1,6 @@
 package askme.service;
 
-import askme.User;
+import askme.entity.User;
 import askme.data.UserRepository;
 import askme.dto.request.RegistrationRequest;
 import askme.mapper.UserMapper;

@@ -1,6 +1,6 @@
 package askme.web;
 
-import askme.User;
+import askme.entity.User;
 import askme.service.AskingQuestionsService;
 import askme.service.QuestionsLifecycleService;
 import org.springframework.http.HttpStatus;
