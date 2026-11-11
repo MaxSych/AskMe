@@ -67,6 +67,7 @@ class UserControllerTest {
 
         verify(profileService).getPostInformation(username);
         verify(profileService).getUserInformation(username);
+        verify(answeringService).getUnansweredQuestions(username);
         verify(inboxMapper).toInboxPostResponseList(fakeQuestions);
     }
 
