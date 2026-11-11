@@ -24,8 +24,8 @@ public class AuthService {
 
     @Transactional
     public void register(RegistrationRequest request) {
-        if (!request.getPassword().equals(request.getConfirmpassword())) {
-            log.error("Registration failed: passwords do not match for email {}", request.getEmail());
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            log.warn("Registration failed: passwords do not match for email {}", request.getEmail());
             throw new IllegalArgumentException("Passwords do not match");
         }
 

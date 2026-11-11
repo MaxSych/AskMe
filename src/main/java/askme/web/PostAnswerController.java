@@ -19,12 +19,9 @@ public class PostAnswerController {
     public ResponseEntity<Void> answerQuestion(@PathVariable Long postId,
                                                @RequestBody Map<String, String> body) {
 
-
         String answerText = body.get("answer");
 
-
         questionsLifecycleService.answerQuestion(answerText, postId);
-
 
         return ResponseEntity.ok().build();
     }
