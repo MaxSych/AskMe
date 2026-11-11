@@ -1,38 +1,43 @@
 package askme.web;
 
-import askme.data.UserRepository;
 import askme.dto.request.RegistrationRequest;
 import askme.service.AuthService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 public class RegisterController {
-    private final PasswordEncoder passwordEncoder;
     private final AuthService authService;
-    private final UserRepository userRepository;
 
-    public RegisterController(AuthService authService,  UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public RegisterController(AuthService authService) {
         this.authService = authService;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/register")
-    public String GetLogin() {
+    public String getLogin() {
         return "register";
     }
 
     @GetMapping("/main")
-    public String GetMain(){
+    public String getMain(){
         return "main";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute RegistrationRequest request) {
-        authService.register(request);
+    public String register(@Valid @ModelAttribute RegistrationRequest request, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        try {
+            authService.register(request);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "register";
+        }
         return "redirect:/main";
 }
 }
