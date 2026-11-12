@@ -96,7 +96,7 @@ function submitAnswer() {
 
     // Send an HTTP POST request to the backend API using Fetch
     fetch(`/posts/${questionId}/answer`, {
-        method: 'POST', // HTTP method
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
                 ...(csrfHeader && csrfToken ? { [csrfHeader]: csrfToken } : {})
