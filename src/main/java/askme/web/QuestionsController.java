@@ -36,8 +36,6 @@ public class QuestionsController {
         } catch (UsernameNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found: " + userName);
         }
-
-
         return "redirect:/profile/" + userName;
     }
 
@@ -45,6 +43,5 @@ public class QuestionsController {
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id, @AuthenticationPrincipal User user){
         questionsLifecycleService.deleteQuestion(id, user.getId());
         return ResponseEntity.noContent().build();
-
     }
 }

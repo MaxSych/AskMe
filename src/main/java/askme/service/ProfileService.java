@@ -6,9 +6,11 @@ import askme.data.QuestionRepository;
 import askme.dto.response.QuestionResponse;
 import askme.entity.Question;
 import askme.mapper.UserPublicProfileMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import askme.dto.response.UserProfileResponse;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,18 +27,18 @@ public class ProfileService {
         this.userPublicProfileMapper = userPublicProfileMapper;
     }
 
-    public UserProfileResponse getUserInformation(@PathVariable String username){
+    public UserProfileResponse getUserInformation(/*@PathVariable*/ String username){
         User userFromDb = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         UserProfileResponse mappedUserFromBd = userPublicProfileMapper.toUserResponse(userFromDb);
 
         return mappedUserFromBd;
     }
 
-    public List<QuestionResponse> getPostInformation(@PathVariable String username){
+    public List<QuestionResponse> getPostInformation(/*@PathVariable*/ String username){
         User userFromDb = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         List<Question> answeredQuestions = questionRepository.findByUserIdAndIsAnsweredTrue(userFromDb.getId());
 

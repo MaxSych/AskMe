@@ -42,6 +42,7 @@ public class RegisterControllerTest {
     void register_WithInvalidData_ShouldReturnFormWithErrors() throws Exception {
 
         mockMvc.perform(post("/register")
+                        .param("username", "testuser")
                         .param("email", "")
                         .param("password", "123")
                         .param("confirmPassword", "123"))
@@ -58,9 +59,10 @@ public class RegisterControllerTest {
                 .when(authService).register(any(RegistrationRequest.class));
 
         mockMvc.perform(post("/register")
+                        .param("username", "testuser")
                         .param("email", "test@example.com")
                         .param("password", "password123")
-                        .param("confirmpassword", "differentPassword"))
+                        .param("confirmPassword", "differentPassword"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("register"))
                 .andExpect(model().attribute("errorMessage", "Passwords do not match"));
@@ -71,6 +73,7 @@ public class RegisterControllerTest {
     @Test
     void register_WithValidData_ShouldRedirectToMain() throws Exception {
         mockMvc.perform(post("/register")
+                        .param("username", "testuser")
                         .param("email", "test@gg.com")
                         .param("password", "password123")
                         .param("confirmPassword", "password123"))

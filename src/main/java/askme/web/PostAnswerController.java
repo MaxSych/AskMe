@@ -2,6 +2,7 @@ package askme.web;
 
 import askme.dto.request.AnswerRequest;
 import askme.service.QuestionsLifecycleService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class PostAnswerController {
 
     @PostMapping("/posts/{postId}/answer")
     public ResponseEntity<Void> answerQuestion(@PathVariable Long postId,
-                                               @RequestBody AnswerRequest request) {
+                                               @Valid  @RequestBody AnswerRequest request) {
 
 
         questionsLifecycleService.answerQuestion(request.answer(), postId);
