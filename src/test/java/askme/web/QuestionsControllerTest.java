@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(PostAnswerController.class)
+@WebMvcTest(QuestionsController.class)
 class QuestionsControllerTest {
 
     @Autowired
@@ -40,7 +40,6 @@ class QuestionsControllerTest {
                 .andExpect(redirectedUrl("/profile/" + userName));
 
         verify(askingQuestionsService).addQuestion(questionText, userName);
-
     }
 
     @Test
@@ -83,6 +82,5 @@ class QuestionsControllerTest {
                 .andExpect(status().isNoContent());
 
         verify(questionsLifecycleService).deleteQuestion(questionId, 1L);
-
     }
 }

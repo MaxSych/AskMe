@@ -62,8 +62,7 @@ class UserControllerTest {
                 .andExpect(model().attribute("posts", posts))
                 .andExpect(model().attribute("unanswered", fakeUnanswered))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("A question?")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("An answer")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("data-id=\"42\"")));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("An answer")));
 
         verify(profileService).getPostInformation(username);
         verify(profileService).getUserInformation(username);

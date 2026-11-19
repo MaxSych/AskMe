@@ -15,10 +15,10 @@ import org.springframework.security.config.annotation.authentication.configurati
 @EnableWebSecurity
 public class Autorisation {
 
-    private final SuccessHandler successHandler;
+    private final LoginSuccessHandler successHandler;
     private final CustomUserDetailsService customUserDetailsService;
 
-    public Autorisation(SuccessHandler successHandler, CustomUserDetailsService customUserDetailsService) {
+    public Autorisation(LoginSuccessHandler successHandler, CustomUserDetailsService customUserDetailsService) {
         this.successHandler = successHandler;
         this.customUserDetailsService = customUserDetailsService;
     }

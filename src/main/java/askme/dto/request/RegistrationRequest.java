@@ -17,12 +17,12 @@ public class RegistrationRequest {
     private String email;
 
     @NotBlank(message = "Password cannot be empty")
-    @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
+    @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
     private String password;
 
     @NotBlank(message = "Password cannot be empty")
-    @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
-    private String confirmpassword;
+    @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+    private String confirmPassword;
 
     @Size(min = 3, max = 50, message = "Bio must be between 3 and 50 characters")
     private String bio;
